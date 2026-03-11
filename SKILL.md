@@ -228,6 +228,28 @@ node ~/.agents/skills/wechat-cell-writer/scripts/run-workflow.js \
 
 ## Step 4: Image Generation (3+张配图)
 
+### 4.5 引用图补充（合规优先，推荐）
+
+在 Cell Writer 的“自制图”之外，可以补充 1-3 张**引用科普图**来提升质感（例如：显微图、机制示意图）。
+
+使用配套 skill：`wechat-safe-science-images`
+- 来源白名单：默认仅 Wikimedia Commons
+- 许可闸门：只允许 Public Domain/CC0/CC BY/CC BY-SA，拒绝 NC/ND/未知
+- 输出：下载到 `imgs/refs/` + `image-manifest.json` + `image-credits.md`
+
+工作流命令（建议在写完 article.md 初稿后执行）：
+```bash
+node ~/.agents/skills/wechat-cell-writer/scripts/run-workflow.js \
+  --step fetch-ref-images --dir "$ARTICLE_DIR" --limit 3
+```
+
+署名策略（按你的要求，默认启用 A，并按最新约定更新）：
+- **对读者的披露**：在每张引用图下方追加一句简短说明（不带 URL），例如：
+  - `*图源：Wikimedia Commons（公开许可素材，CC BY）。*`
+- **内部留档**：完整来源/许可证据链写入 `imgs/refs/image-manifest.json`（可含 URL），不放正文。
+- 不再在正文末尾添加“图片来源与授权/图片素材摘要”等大段区块（避免对读者无意义的信息）。
+
+
 ### ⚠️ 重要：生成图片前必须阅读详细指南
 
 **⛔ BLOCKING**: 在生成任何图片之前，必须先阅读 [references/image-generation-guide.md](references/image-generation-guide.md)，按照其中的 **封面带标题规则**、**5维度框架** 和 **Type × Style 矩阵** 构建 prompt。

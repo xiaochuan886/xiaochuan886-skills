@@ -11,13 +11,14 @@ Usage:
   run-workflow.js [--step init] --topic "NK细胞"
   run-workflow.js --step status --dir /path/to/task
   run-workflow.js --step plan-images --dir /path/to/task
+  run-workflow.js --step fetch-ref-images --dir /path/to/task [--query "keyword"] [--limit 3]
   run-workflow.js --step validate-images --dir /path/to/task
   run-workflow.js --step validate-research --dir /path/to/task
   run-workflow.js --step validate --dir /path/to/task
   run-workflow.js --step sanitize --dir /path/to/task
 
 Options:
-  --step init|status|plan-images|validate-images|validate-research|validate|sanitize   Workflow step to run (default: init)
+  --step init|status|plan-images|fetch-ref-images|validate-images|validate-research|validate|sanitize   Workflow step to run (default: init)
   --topic TEXT                  Topic or working title for init
   --column TEXT                 Column name for init
   --author TEXT                 Author name for init
@@ -62,6 +63,12 @@ function parseArgs(argv) {
         break;
       case "--dir":
         options.dir = argv[++index];
+        break;
+      case "--query":
+        options.query = argv[++index];
+        break;
+      case "--limit":
+        options.limit = argv[++index];
         break;
       case "--output":
         options.output = argv[++index];
@@ -182,6 +189,7 @@ function main() {
   const validateScript = path.join(scriptDir, "validate-article.sh");
   const validateResearchScript = path.join(scriptDir, "validate-research.sh");
   const sanitizeScript = path.join(scriptDir, "sanitize-article.sh");
+  const fetchRefImagesScript = path.join(scriptDir, "fetch-reference-images.sh");
 
   if (options.step === "init") {
     const args = [initScript, "--print-path-only"];
@@ -242,6 +250,16 @@ function main() {
       if (columnMatch) args.push("--column", columnMatch[1].trim().replace(/^['"]|['"]$/g, ""));
     }
     args.push("--force");
+    const result = runCommand("bash", args);
+    process.stdout.write(result.stdout || "");
+    process.stderr.write(result.stderr || "");
+    process.exit(result.status || 0);
+  }
+
+  if (options.step === "fetch-ref-images") {
+    const args = [fetchRefImagesScript, "--dir", taskDir];
+    if (options.query) args.push("--query", options.query);
+    if (options.limit) args.push("--limit", options.limit);
     const result = runCommand("bash", args);
     process.stdout.write(result.stdout || "");
     process.stderr.write(result.stderr || "");
