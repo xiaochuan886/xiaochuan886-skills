@@ -7,11 +7,37 @@ description: >
   Research Frontiers (科研前沿解读), Cell Science Popularization (细胞科普系列),
   and Health Tips (健康管家Tips). Use when user wants to create cell therapy articles,
   write WeChat articles about cells, or mentions "写文章", "细胞文章", "公众号文章".
+allowed-tools:
+  - Bash(npm *)
+  - Bash(npx *)
+  - Bash(bun *)
+  - Bash(node *)
+  - Bash(cat *)
 ---
 
 # WeChat Cell Article Writer
 
 A skill for automatically generating engaging, compliant WeChat Official Account articles about cell therapy for general readers.
+
+## ⚠️ 首次使用检查 / First-Time Setup
+
+**Before using this skill, ensure dependencies are installed:**
+
+```bash
+# 检查并安装依赖 / Check and install dependencies
+cd ~/.agents/skills/wechat-cell-writer/scripts
+
+# 使用 bun 安装（推荐）/ Using bun (recommended)
+bun install
+
+# 或使用 npm / Or using npm
+npm install
+
+# 安装 Playwright 浏览器 / Install Playwright browsers
+npx playwright install chromium
+```
+
+**自动检查**：当 skill 被调用时，如果依赖未安装，会提示你运行上述命令。
 
 ## Language
 
