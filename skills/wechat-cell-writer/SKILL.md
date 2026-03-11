@@ -21,23 +21,23 @@ A skill for automatically generating engaging, compliant WeChat Official Account
 
 ## ⚠️ 首次使用检查 / First-Time Setup
 
-**Before using this skill, ensure dependencies are installed:**
+**Before using this skill, run the setup script (只需运行一次 / run once):**
 
 ```bash
-# 检查并安装依赖 / Check and install dependencies
-cd ~/.agents/skills/wechat-cell-writer/scripts
-
-# 使用 bun 安装（推荐）/ Using bun (recommended)
-bun install
-
-# 或使用 npm / Or using npm
-npm install
-
-# 安装 Playwright 浏览器 / Install Playwright browsers
-npx playwright install chromium
+bash ~/.agents/skills/wechat-cell-writer/scripts/setup.sh
 ```
 
-**自动检查**：当 skill 被调用时，如果依赖未安装，会提示你运行上述命令。
+This script will automatically:
+- Detect and use bun or npm
+- Install all npm dependencies
+- Install Playwright Chromium browser
+
+**Or install manually:**
+```bash
+cd ~/.agents/skills/wechat-cell-writer/scripts
+bun install
+npx playwright install chromium
+```
 
 ## Language
 
