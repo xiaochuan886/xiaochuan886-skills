@@ -1,57 +1,58 @@
-# wechat-cell-writer
+# xiaochuan886-skills
 
 English | [简体中文](./README.zh-CN.md)
 
-`wechat-cell-writer` is a local skill for researching, drafting, illustrating, validating, and preparing WeChat Official Account articles about cell therapy and biomedical topics.
+A collection of AI agent skills for WeChat content creation and science communication.
 
-## What It Includes
+## Available Skills
 
-- `SKILL.md`: the orchestration entrypoint and workflow guidance
-- `references/`: writing, image, citation, publishing, and compliance references
-- `scripts/`: executable workflow helpers for init, image planning, validation, sanitizing, and paper screenshots
-- `agents/openai.yaml`: UI metadata for OpenAI-compatible skill surfaces
+### 1. wechat-cell-writer
 
-## Workflow
+Automatically generates WeChat Official Account articles about cell therapy and biomedical topics.
 
-1. Initialize an article workspace
-2. Fill `research.md` with current findings
-3. Draft topic candidates in `topics.md`
-4. Write `article.md`
-5. Generate images and paper screenshots
-6. Validate and sanitize before publishing
+- Researches latest scientific papers and industry news
+- Creates engaging, compliant articles (1500-3000 words) for general readers
+- Supports three columns: Research Frontiers, Cell Science Popularization, and Health Tips
 
-## Quick Start
-
+**Install:**
 ```bash
-cd scripts
-npm install
-
-npm run workflow:init -- --topic "NK细胞科普"
+npx skills add xiaochuan886/xiaochuan886-skills --skill wechat-cell-writer
 ```
 
-Or run the workflow runner directly:
+### 2. wechat-safe-science-images
 
+Add high-quality science/medical/pop-science images to articles with near-zero infringement risk.
+
+- Sources only from trusted allowlist (default: Wikimedia Commons)
+- Filters by license (Public Domain/CC0/CC BY/CC BY-SA only)
+- Outputs local images with proper attribution
+
+**Install:**
 ```bash
-node /Users/massifserver/.agents/skills/wechat-cell-writer/scripts/run-workflow.js --step init --topic "NK细胞科普"
+npx skills add xiaochuan886/xiaochuan886-skills --skill wechat-safe-science-images
 ```
 
-## Key Commands
+## Install All Skills
 
 ```bash
-node /Users/massifserver/.agents/skills/wechat-cell-writer/scripts/run-workflow.js --step plan-images --dir "$ARTICLE_DIR"
-node /Users/massifserver/.agents/skills/wechat-cell-writer/scripts/run-workflow.js --step validate-images --dir "$ARTICLE_DIR"
-node /Users/massifserver/.agents/skills/wechat-cell-writer/scripts/run-workflow.js --step validate-research --dir "$ARTICLE_DIR"
-node /Users/massifserver/.agents/skills/wechat-cell-writer/scripts/run-workflow.js --step validate --dir "$ARTICLE_DIR"
-node /Users/massifserver/.agents/skills/wechat-cell-writer/scripts/run-workflow.js --step sanitize --dir "$ARTICLE_DIR"
+npx skills add xiaochuan886/xiaochuan886-skills
 ```
 
-## Defaults
+## Repository Structure
 
-- Fixed author: `细胞小境`
-- Audience: Chinese WeChat readers
-- Core reader-facing image text must be Simplified Chinese
-- Domain abbreviations such as `CAR-T`, `NK`, `TIL`, and `iPSC` are allowed
-- If a cited paper page is blocked or overlaid, `screenshot-paper.ts` can fall back to PubMed via `--pubmed-url`
+```
+xiaochuan886-skills/
+├── skills/
+│   ├── wechat-cell-writer/
+│   │   ├── SKILL.md           # Main skill definition
+│   │   ├── references/        # Writing guides and templates
+│   │   ├── scripts/           # Workflow automation scripts
+│   │   └── agents/            # Agent UI metadata
+│   └── wechat-safe-science-images/
+│       └── SKILL.md
+├── README.md
+└── LICENSE
+```
 
 ## License
 

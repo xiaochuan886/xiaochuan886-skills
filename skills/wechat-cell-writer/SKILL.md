@@ -1,6 +1,12 @@
 ---
 name: wechat-cell-writer
-description: Automatically generates WeChat Official Account articles about cell therapy. Searches latest research, industry news, and competitor content to create engaging, compliant articles (1500-3000 words) for general readers. Supports three columns: Research Frontiers (科研前沿解读), Cell Science Popularization (细胞科普系列), and Health Tips (健康管家Tips). Use when user wants to create cell therapy articles, write WeChat articles about cells, or mentions "写文章", "细胞文章", "公众号文章".
+description: >
+  Automatically generates WeChat Official Account articles about cell therapy.
+  Searches latest research, industry news, and competitor content to create engaging,
+  compliant articles (1500-3000 words) for general readers. Supports three columns:
+  Research Frontiers (科研前沿解读), Cell Science Popularization (细胞科普系列),
+  and Health Tips (健康管家Tips). Use when user wants to create cell therapy articles,
+  write WeChat articles about cells, or mentions "写文章", "细胞文章", "公众号文章".
 ---
 
 # WeChat Cell Article Writer
