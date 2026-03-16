@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书发布追链"
+  short_description: "反查新发布小红书内容链接并抓取点赞收藏评论等公开运营指标"
+  default_prompt: "Use $xhs-publish-trace to find a newly published Xiaohongshu note, recover its public URL, and return available engagement metrics."

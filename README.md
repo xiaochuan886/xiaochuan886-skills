@@ -2,55 +2,72 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-A collection of AI agent skills for WeChat content creation and science communication.
+A curated collection of Codex skills for content creation and social growth workflows.
 
-## Available Skills
+## Focused Skill Set (Product Video + XHS)
 
-### 1. wechat-cell-writer
+### 1. `product-promo-video`
+Generate trend-aware product promo videos from product image(s) and copy.
 
-Automatically generates WeChat Official Account articles about cell therapy and biomedical topics.
+- Builds creative brief + 2-segment storyboard
+- Produces keyframes, segment clips, and final concatenated campaign video
+- Keeps packaging/text provenance and physical realism constraints
 
-- Researches latest scientific papers and industry news
-- Creates engaging, compliant articles (1500-3000 words) for general readers
-- Supports three columns: Research Frontiers, Cell Science Popularization, and Health Tips
+### 2. `xhs-publish-trace`
+Trace newly published Xiaohongshu notes back to public links and engagement metrics.
 
-**Install:**
-```bash
-npx skills add xiaochuan886/xiaochuan886-skills --skill wechat-cell-writer
-```
+- Searches and verifies notes with `feed_id` + `xsec_token`
+- Builds final public note URL
+- Returns available metrics (likes, collects, comments, etc.)
 
-### 2. wechat-safe-science-images
+### 3. `product-video-xhs-ops`
+LLM-led end-to-end ops workflow for product video production, publishing, trace-back, and ledgering.
 
-Add high-quality science/medical/pop-science images to articles with near-zero infringement risk.
+- Uses `product-promo-video` as the generation engine
+- Uses `xhs-publish-trace` for post-publish link recovery and metrics check
+- Writes deterministic daily records for operations and reporting
 
-- Sources only from trusted allowlist (default: Wikimedia Commons)
-- Filters by license (Public Domain/CC0/CC BY/CC BY-SA only)
-- Outputs local images with proper attribution
+## Workflow Relationship
 
-**Install:**
-```bash
-npx skills add xiaochuan886/xiaochuan886-skills --skill wechat-safe-science-images
-```
+1. Generate campaign video with `product-promo-video`
+2. Publish and reverse-trace the note with `xhs-publish-trace`
+3. Run operational closure (validation, archive, ledger) with `product-video-xhs-ops`
 
-## Install All Skills
+## Other Skills
+
+- `wechat-cell-writer`
+- `wechat-safe-science-images`
+
+These are maintained in the same `skills/` directory as the XHS workflow skills.
+
+## Install
+
+Install all skills from this repo:
 
 ```bash
 npx skills add xiaochuan886/xiaochuan886-skills
 ```
 
+Install a specific skill:
+
+```bash
+npx skills add xiaochuan886/xiaochuan886-skills --skill product-promo-video
+npx skills add xiaochuan886/xiaochuan886-skills --skill xhs-publish-trace
+npx skills add xiaochuan886/xiaochuan886-skills --skill product-video-xhs-ops
+```
+
 ## Repository Structure
 
-```
+```text
 xiaochuan886-skills/
 ├── skills/
+│   ├── product-promo-video/
+│   ├── xhs-publish-trace/
+│   ├── product-video-xhs-ops/
 │   ├── wechat-cell-writer/
-│   │   ├── SKILL.md           # Main skill definition
-│   │   ├── references/        # Writing guides and templates
-│   │   ├── scripts/           # Workflow automation scripts
-│   │   └── agents/            # Agent UI metadata
 │   └── wechat-safe-science-images/
-│       └── SKILL.md
 ├── README.md
+├── README.zh-CN.md
 └── LICENSE
 ```
 

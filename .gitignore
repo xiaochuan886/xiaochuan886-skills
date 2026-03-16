@@ -2,4 +2,5 @@ scripts/node_modules/
 scripts/.bun/
 *.log
 .DS_Store
-
+**/.env
+**/output/

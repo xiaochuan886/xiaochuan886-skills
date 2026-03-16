@@ -1,0 +1,4 @@
+interface:
+  display_name: "商品营销视频生成"
+  short_description: "从商品图片与文案生成两段式营销视频并自动拼接输出成片"
+  default_prompt: "Use $product-promo-video to turn a product image and product copy into a 2-segment promo video campaign with keyframes and a final concatenated output."

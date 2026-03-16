@@ -1,0 +1,4 @@
+interface:
+  display_name: "商品视频小红书流水线"
+  short_description: "批量生成商品视频、发布小红书并回填每日台账链接信息"
+  default_prompt: "Use $product-video-xhs-ops to batch turn folders under 待完成 into promo videos, publish them to Xiaohongshu, and update the daily Excel ledger."
