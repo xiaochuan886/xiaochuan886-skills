@@ -67,6 +67,10 @@ if ! grep -q '^- language: zh-CN$' "$PLAN_PATH"; then
   error "Global language must be zh-CN."
 fi
 
+if ! grep -q '^- default_image_model: gemini-3.1-flash-image-preview$' "$PLAN_PATH"; then
+  error "Global default_image_model must be gemini-3.1-flash-image-preview."
+fi
+
 if ! grep -q '简体中文' "$PLAN_PATH"; then
   error "images-plan.md must explicitly require Simplified Chinese."
 fi
@@ -82,6 +86,11 @@ fi
 
 if ! grep -q 'recommended_skill: baoyu-cover-image' "$PLAN_PATH"; then
   error "At least one cover image should route to baoyu-cover-image."
+fi
+
+MODEL_LINE_COUNT="$(grep -c 'default_model: gemini-3.1-flash-image-preview' "$PLAN_PATH" || true)"
+if [ "$MODEL_LINE_COUNT" -lt 4 ]; then
+  error "Each image block should declare default_model: gemini-3.1-flash-image-preview."
 fi
 
 if ! grep -q 'baoyu-article-illustrator' "$PLAN_PATH"; then

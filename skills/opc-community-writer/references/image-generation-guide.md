@@ -32,6 +32,11 @@
 - 正文配图：`baoyu-article-illustrator`，信息图可选 `baoyu-infographic`
 - 小红书图片：`baoyu-xhs-images`
 
+## 默认模型
+
+- Gemini 生图默认模型统一为：`gemini-3.1-flash-image-preview`
+- `images-plan.md` 中应在全局写 `default_image_model`，并在每个图片块写 `default_model`
+
 小红书图片不要再走通用封面 skill，优先用 `baoyu-xhs-images` 产出更贴近平台习惯的图组。对 OPC 主题，优先考虑这些 preset：
 
 - `knowledge-card`

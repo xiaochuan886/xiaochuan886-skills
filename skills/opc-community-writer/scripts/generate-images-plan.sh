@@ -98,6 +98,7 @@ cat <<EOF >"$PLAN_PATH"
 - audience: 微信公众号中文读者 + 小红书读者
 - language: zh-CN
 - text_policy: 核心标题和面向读者的说明文字必须使用简体中文
+- default_image_model: gemini-3.1-flash-image-preview
 - english_allowed: abbreviations-only
 - abbreviation_policy: OPC、AI 等可保留，但核心说明文字必须中文
 - prompt_generation_policy: 优先调用专业生图 skill 生成 prompt，不在此文件中写死最终 prompt
@@ -108,6 +109,7 @@ cat <<EOF >"$PLAN_PATH"
 - goal: 用中文标题概括主题并提升点击率
 - ratio: 2.35:1
 - recommended_skill: baoyu-cover-image
+- default_model: gemini-3.1-flash-image-preview
 - language_requirement: 核心标题文字必须为简体中文；专业缩写可保留
 - visual_direction: editorial / framework / business
 - prompt_status: pending
@@ -121,6 +123,7 @@ cat <<EOF >"$PLAN_PATH"
 - ratio: 3:4
 - ratio_rule: 信息密度高可改为 9:16；不要 16:9
 - recommended_skill: baoyu-article-illustrator
+- default_model: gemini-3.1-flash-image-preview
 - language_requirement: 核心标签和说明文字必须为简体中文；专业缩写可保留
 - visual_direction: framework / flowchart / comparison
 - prompt_status: pending
@@ -134,6 +137,7 @@ cat <<EOF >"$PLAN_PATH"
 - ratio: 9:16
 - ratio_rule: 内容较少可改为 3:4 或 1:1；不要 16:9
 - recommended_skill: baoyu-article-illustrator 或 baoyu-infographic
+- default_model: gemini-3.1-flash-image-preview
 - language_requirement: 核心标签和说明文字必须为简体中文；专业缩写可保留
 - visual_direction: timeline / comparison / infographic
 - prompt_status: pending
@@ -147,6 +151,7 @@ cat <<EOF >"$PLAN_PATH"
 - ratio: 3:4
 - ratio_rule: 也可使用 1:1；不要 16:9
 - recommended_skill: baoyu-xhs-images
+- default_model: gemini-3.1-flash-image-preview
 - language_requirement: 核心标题文字必须为简体中文；专业缩写可保留
 - visual_direction: knowledge-card / checklist / pro-summary
 - prompt_status: pending

@@ -27,8 +27,8 @@ h2 {
   display: inline-flex;
   align-items: center;
   gap: 0.7em;
-  margin: 3.1em 0 1.2em;
-  padding: 0;
+  margin: 3.1em 0 1.2em 0.18em;
+  padding: 0 0.1em 0 0.15em;
   background: transparent;
   color: #0f172a;
   font-size: calc(var(--md-font-size) * 1.08);
