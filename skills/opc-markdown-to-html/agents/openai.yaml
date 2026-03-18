@@ -1,0 +1,4 @@
+interface:
+  display_name: "OPC Community Writer"
+  short_description: "Create OPC community growth content for WeChat and Xiaohongshu"
+  default_prompt: "Use $opc-community-writer to research, draft, illustrate, validate, and prepare an OPC community WeChat article plus a Xiaohongshu derivative."

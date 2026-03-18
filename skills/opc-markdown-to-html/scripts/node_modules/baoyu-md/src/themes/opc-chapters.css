@@ -1,0 +1,124 @@
+/**
+ * OPC chapters 主题
+ * 参考 mdnice 风格的章节标签式长文排版。
+ */
+
+section,
+container,
+#output {
+  line-height: 1.8;
+}
+
+h1 {
+  display: block;
+  margin: 1.8em 0 1.05em;
+  padding: 0 0 0.5em;
+  border-bottom: 1px solid rgba(33, 33, 34, 0.2);
+  color: hsl(var(--foreground));
+  text-align: left;
+  font-size: calc(var(--md-font-size) * 1.36);
+}
+
+h2 {
+  display: inline-block;
+  margin: 3em 0 1.2em;
+  padding: 0.15em 1.6em 0.15em 0.85em;
+  border-bottom-right-radius: 40px;
+  background: #212122;
+  color: #fff;
+  text-align: left;
+  font-size: calc(var(--md-font-size) * 1.08);
+  line-height: 2.25em;
+}
+
+h3 {
+  margin: 1.85em 0 0.8em;
+  padding-left: 0.75em;
+  border-left: 3px solid #212122;
+  font-size: calc(var(--md-font-size) * 1.05);
+}
+
+p {
+  margin: 0;
+  padding: 8px 0;
+  line-height: 1.8;
+  letter-spacing: 0;
+}
+
+blockquote {
+  margin: 20px 0;
+  padding: 10px 10px 10px 20px;
+  border-left: 3px solid rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+blockquote > p {
+  margin: 0;
+  padding: 8px 0;
+}
+
+strong {
+  color: #000;
+}
+
+em {
+  color: #ef7060;
+  font-style: italic;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: 0.55em auto 0.8em;
+  border-radius: 8px;
+}
+
+figcaption,
+.md-figcaption {
+  margin-top: 0.35em;
+  color: #7a7a7a;
+  font-size: 0.78em;
+  text-align: center;
+}
+
+ul,
+ol {
+  padding-left: 1.4em;
+}
+
+li {
+  margin: 0.44em 0;
+}
+
+hr {
+  margin: 10px 0;
+  border: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+code {
+  color: #212122;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+pre.code__pre,
+.hljs.code__pre {
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  margin: 1.3em 0;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.62em 0.76em;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+th {
+  background: rgba(33, 33, 34, 0.08);
+}

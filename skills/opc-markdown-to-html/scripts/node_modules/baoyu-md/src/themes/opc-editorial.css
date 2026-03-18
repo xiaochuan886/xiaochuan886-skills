@@ -1,0 +1,207 @@
+/**
+ * OPC editorial 主题
+ * 长期主模板：案例、人物、专栏、访谈。
+ */
+
+section,
+container,
+#output {
+  line-height: 1.86;
+  color: #2b2b2b;
+}
+
+h1 {
+  display: block;
+  margin: 2em 0 1.25em;
+  padding: 0 0 0.8em;
+  border-bottom: 1px solid rgba(120, 113, 108, 0.28);
+  color: #1c1917;
+  font-size: calc(var(--md-font-size) * 1.5);
+  font-weight: 700;
+  line-height: 1.34;
+  text-align: left;
+  letter-spacing: 0.025em;
+}
+
+h2 {
+  display: table;
+  margin: 3.4em auto 1.35em;
+  padding: 0.18em 1.2em;
+  border-top: 1px solid rgba(120, 113, 108, 0.3);
+  border-bottom: 1px solid rgba(120, 113, 108, 0.3);
+  color: #6b4f3a;
+  background: transparent;
+  font-size: calc(var(--md-font-size) * 1.08);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h3 {
+  margin: 2em 0 0.85em;
+  padding-left: 0.85em;
+  border-left: 3px solid rgba(180, 124, 77, 0.8);
+  color: #292524;
+  font-size: calc(var(--md-font-size) * 1.05);
+  font-weight: 700;
+  line-height: 1.48;
+}
+
+h4,
+h5,
+h6 {
+  margin: 1.55em 0 0.7em;
+  color: #6b4f3a;
+  font-weight: 700;
+}
+
+p {
+  margin: 1.38em 0;
+  color: #44403c;
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: #8b5e34;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(139, 94, 52, 0.24);
+}
+
+strong {
+  color: #1f2937;
+  font-weight: 700;
+}
+
+em {
+  color: #8b5e34;
+  font-style: italic;
+}
+
+blockquote,
+.markdown-alert {
+  position: relative;
+  margin: 1.6em 0;
+  padding: 1.2em 1.2em 1.15em 1.35em;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(250, 247, 242, 1), rgba(245, 241, 235, 1));
+  box-shadow: 0 10px 24px rgba(120, 113, 108, 0.08);
+}
+
+blockquote::before,
+.markdown-alert::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 4px;
+  border-radius: 999px;
+  background: var(--md-primary-color);
+}
+
+blockquote > p,
+.markdown-alert > p {
+  margin: 0;
+  color: #57534e;
+  line-height: 1.84;
+}
+
+[class^="alert-title-"],
+[class*=" alert-title-"] {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.55em;
+  color: #6b4f3a;
+  font-size: 0.95em;
+  font-weight: 700;
+}
+
+[class^="alert-icon-"],
+[class*=" alert-icon-"] {
+  fill: currentColor;
+}
+
+ul,
+ol {
+  margin: 1.2em 0 1.4em;
+  padding-left: 1.45em;
+}
+
+li {
+  margin: 0.48em 0;
+  color: #44403c;
+}
+
+li::marker {
+  color: #a16207;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  margin: 0.8em auto 0.9em;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(120, 113, 108, 0.1);
+}
+
+figcaption,
+.md-figcaption {
+  margin-top: 0.35em;
+  color: #78716c;
+  font-size: 0.8em;
+  line-height: 1.72;
+  text-align: center;
+}
+
+hr {
+  margin: 2.25em 0;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(180, 124, 77, 0),
+    rgba(180, 124, 77, 0.35),
+    rgba(180, 124, 77, 0)
+  );
+}
+
+code {
+  padding: 0.12em 0.36em;
+  border-radius: 6px;
+  color: #8b5e34;
+  background: rgba(180, 124, 77, 0.1);
+}
+
+pre.code__pre,
+.hljs.code__pre {
+  border-radius: 14px;
+}
+
+table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+th,
+td {
+  padding: 0.76em 0.82em;
+  border: 1px solid rgba(180, 124, 77, 0.12);
+  vertical-align: top;
+}
+
+th {
+  background: rgba(180, 124, 77, 0.08);
+  color: #4b5563;
+  font-weight: 700;
+}
+
+tr:nth-child(even) td {
+  background: rgba(250, 247, 242, 0.82);
+}

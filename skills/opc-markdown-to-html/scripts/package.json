@@ -1,0 +1,8 @@
+{
+  "name": "opc-markdown-to-html-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "baoyu-md": "file:./vendor/baoyu-md"
+  }
+}

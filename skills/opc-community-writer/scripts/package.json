@@ -1,0 +1,17 @@
+{
+  "name": "opc-community-writer-scripts",
+  "version": "1.0.0",
+  "scripts": {
+    "workflow:init": "node run-workflow.js --step init",
+    "workflow:status": "node run-workflow.js --step status",
+    "workflow:plan-images": "node run-workflow.js --step plan-images",
+    "workflow:validate-images": "node run-workflow.js --step validate-images",
+    "workflow:validate-research": "node run-workflow.js --step validate-research",
+    "workflow:validate-xhs": "node run-workflow.js --step validate-xhs",
+    "workflow:validate": "node run-workflow.js --step validate",
+    "workflow:sanitize": "node run-workflow.js --step sanitize"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
