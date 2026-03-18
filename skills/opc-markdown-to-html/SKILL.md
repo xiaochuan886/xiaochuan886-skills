@@ -4,7 +4,7 @@ description: Converts Markdown to styled HTML with independently maintained OPC 
 version: 0.1.0
 metadata:
   openclaw:
-    homepage: https://github.com/JimLiu/baoyu-skills#baoyu-markdown-to-html
+    homepage: https://github.com/xiaochuan886/xiaochuan886-skills
     requires:
       anyBins:
         - bun
@@ -26,29 +26,29 @@ Converts Markdown files to HTML with inline CSS, optimized for WeChat Official A
 
 ## Preferences (EXTEND.md)
 
-Check EXTEND.md existence (priority order):
+Check EXTEND.md existence (priority order). Prefer the OPC namespace; keep the old path only as compatibility fallback:
 
 ```bash
 # macOS, Linux, WSL, Git Bash
-test -f .baoyu-skills/opc-markdown-to-html/EXTEND.md && echo "project"
-test -f "${XDG_CONFIG_HOME:-$HOME/.config}/baoyu-skills/opc-markdown-to-html/EXTEND.md" && echo "xdg"
-test -f "$HOME/.baoyu-skills/opc-markdown-to-html/EXTEND.md" && echo "user"
+test -f .opc-skills/opc-markdown-to-html/EXTEND.md && echo "project"
+test -f "${XDG_CONFIG_HOME:-$HOME/.config}/opc-skills/opc-markdown-to-html/EXTEND.md" && echo "xdg"
+test -f "$HOME/.opc-skills/opc-markdown-to-html/EXTEND.md" && echo "user"
 ```
 
 ```powershell
 # PowerShell (Windows)
-if (Test-Path .baoyu-skills/opc-markdown-to-html/EXTEND.md) { "project" }
+if (Test-Path .opc-skills/opc-markdown-to-html/EXTEND.md) { "project" }
 $xdg = if ($env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME } else { "$HOME/.config" }
-if (Test-Path "$xdg/baoyu-skills/opc-markdown-to-html/EXTEND.md") { "xdg" }
-if (Test-Path "$HOME/.baoyu-skills/opc-markdown-to-html/EXTEND.md") { "user" }
+if (Test-Path "$xdg/opc-skills/opc-markdown-to-html/EXTEND.md") { "xdg" }
+if (Test-Path "$HOME/.opc-skills/opc-markdown-to-html/EXTEND.md") { "user" }
 ```
 
 ┌──────────────────────────────────────────────────────────────┬───────────────────┐
 │                             Path                             │     Location      │
 ├──────────────────────────────────────────────────────────────┼───────────────────┤
-│ .baoyu-skills/opc-markdown-to-html/EXTEND.md                 │ Project directory │
+│ .opc-skills/opc-markdown-to-html/EXTEND.md                   │ Project directory │
 ├──────────────────────────────────────────────────────────────┼───────────────────┤
-│ $HOME/.baoyu-skills/opc-markdown-to-html/EXTEND.md           │ User home         │
+│ $HOME/.opc-skills/opc-markdown-to-html/EXTEND.md             │ User home         │
 └──────────────────────────────────────────────────────────────┴───────────────────┘
 
 ┌───────────┬───────────────────────────────────────────────────────────────────────────┐
@@ -82,13 +82,13 @@ bash {baseDir}/scripts/setup.sh
 
 **Format Suggestion**:
 
-If CJK content detected AND `baoyu-format-markdown` skill is available:
+If CJK content detected AND a markdown-formatting skill is available:
 
 Use `AskUserQuestion` to ask whether to format first. Formatting can fix:
 - Bold markers with punctuation inside causing `**` parse failures
 - CJK/English spacing issues
 
-**If user agrees**: Invoke `baoyu-format-markdown` skill to format the file, then use formatted file as input.
+**If user agrees**: Invoke your preferred markdown-formatting skill first, then use the formatted file as input.
 
 **If user declines**: Continue with original file.
 
@@ -97,18 +97,18 @@ Use `AskUserQuestion` to ask whether to format first. Formatting can fix:
 **Theme resolution order** (first match wins):
 1. User explicitly specified theme (CLI `--theme` or conversation)
 2. EXTEND.md `default_theme` (this skill's own EXTEND.md, checked in Step 0)
-3. `baoyu-post-to-wechat` EXTEND.md `default_theme` (cross-skill fallback)
+3. Existing WeChat-posting skill EXTEND.md `default_theme` (compatibility fallback)
 4. If none found → use AskUserQuestion to confirm
 
 **Cross-skill EXTEND.md check** (only if this skill's EXTEND.md has no `default_theme`):
 
 ```bash
-# Check baoyu-post-to-wechat EXTEND.md for default_theme
+# Compatibility fallback: check an existing WeChat-posting skill EXTEND.md for default_theme
 test -f "$HOME/.baoyu-skills/baoyu-post-to-wechat/EXTEND.md" && grep -o 'default_theme:.*' "$HOME/.baoyu-skills/baoyu-post-to-wechat/EXTEND.md"
 ```
 
 ```powershell
-# PowerShell (Windows)
+# PowerShell (Windows, compatibility fallback)
 if (Test-Path "$HOME/.baoyu-skills/baoyu-post-to-wechat/EXTEND.md") { Select-String -Pattern 'default_theme:.*' -Path "$HOME/.baoyu-skills/baoyu-post-to-wechat/EXTEND.md" | ForEach-Object { $_.Matches.Value } }
 ```
 
@@ -301,3 +301,7 @@ If no title is found, extracts from first H1/H2 heading or uses filename.
 ## Extension Support
 
 Custom configurations via EXTEND.md. See **Preferences** section for paths and supported options.
+
+## References
+
+Implementation notes and external inspirations are documented in [REFERENCES.md](REFERENCES.md).

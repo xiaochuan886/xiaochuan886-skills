@@ -32,7 +32,7 @@ test("image extension and local fallback resolution handle common path variants"
   assert.equal(getImageExtension("https://example.com/a.jpeg?x=1"), "jpeg");
   assert.equal(getImageExtension("/tmp/figure"), "png");
 
-  const root = await makeTempDir("baoyu-md-images-");
+  const root = await makeTempDir("opc-md-core-images-");
   t.after(() => fs.rm(root, { recursive: true, force: true }));
 
   const baseDir = path.join(root, "article");
@@ -46,7 +46,7 @@ test("image extension and local fallback resolution handle common path variants"
 });
 
 test("resolveContentImages resolves image placeholders against the content directory", async (t) => {
-  const root = await makeTempDir("baoyu-md-content-images-");
+  const root = await makeTempDir("opc-md-core-content-images-");
   t.after(() => fs.rm(root, { recursive: true, force: true }));
 
   const baseDir = path.join(root, "article");

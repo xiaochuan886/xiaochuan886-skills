@@ -89,7 +89,7 @@ export async function resolveImagePath(
   imagePath: string,
   baseDir: string,
   tempDir: string,
-  logLabel = "baoyu-md",
+  logLabel = "opc-md-core",
 ): Promise<string> {
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
     const hash = createHash("md5").update(imagePath).digest("hex").slice(0, 8);
@@ -113,7 +113,7 @@ export async function resolveContentImages(
   images: ImagePlaceholder[],
   baseDir: string,
   tempDir: string,
-  logLabel = "baoyu-md",
+  logLabel = "opc-md-core",
 ): Promise<ResolvedImageInfo[]> {
   const resolved: ResolvedImageInfo[] = [];
 

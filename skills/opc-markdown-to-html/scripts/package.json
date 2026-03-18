@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "baoyu-md": "file:./vendor/baoyu-md"
+    "opc-md-core": "file:./vendor/opc-md-core"
   }
 }

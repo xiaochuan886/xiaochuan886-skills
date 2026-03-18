@@ -18,7 +18,7 @@ import {
   resolveContentImages,
   serializeFrontmatter,
   stripWrappingQuotes,
-} from "baoyu-md";
+} from "opc-md-core";
 
 interface ImageInfo {
   placeholder: string;

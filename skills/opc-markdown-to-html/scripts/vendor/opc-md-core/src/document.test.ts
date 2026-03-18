@@ -88,13 +88,13 @@ test("resolveMarkdownStyle merges theme defaults with explicit overrides", () =>
 });
 
 test("resolveRenderOptions loads workspace EXTEND settings and lets explicit options win", async (t) => {
-  const root = await makeTempDir("baoyu-md-render-options-");
+  const root = await makeTempDir("opc-md-core-render-options-");
   useCwd(t, root);
 
   const extendPath = path.join(
     root,
-    ".baoyu-skills",
-    "baoyu-markdown-to-html",
+    ".opc-skills",
+    "opc-markdown-to-html",
     "EXTEND.md",
   );
   await fs.mkdir(path.dirname(extendPath), { recursive: true });
