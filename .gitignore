@@ -1,5 +1,8 @@
 scripts/node_modules/
 scripts/.bun/
+**/scripts/node_modules/
+**/scripts/.bun/
+**/node_modules/
 *.log
 .DS_Store
 **/.env
