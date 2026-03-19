@@ -24,31 +24,31 @@ Do not hand over the whole workflow to a single pipeline script unless the user 
 
 Read and reuse these local skills:
 
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/SKILL.md`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/SKILL.md`
 - `/Users/luxiaochuan/.codex/skills/xiaohongshu-mcp/SKILL.md`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/xhs-publish-trace/SKILL.md`
+- `/Users/re.stem/xiaochuan886-skills/skills/xhs-publish-trace/SKILL.md`
 
 Use these scripts selectively:
 
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/validate_campaign.py`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/write_daily_ledger.py`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/archive_task.py`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/mcp_http_client.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/validate_campaign.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/write_daily_ledger.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/archive_task.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/mcp_http_client.py`
 
 Treat this as a legacy fallback only:
 
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/run_pipeline.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/run_pipeline.py`
 
 ## Fixed paths
 
 Default to these paths unless the user overrides them:
 
-- 待处理任务目录: `/Users/luxiaochuan/fuxingdaoOPC/待完成`
-- 视频落盘根目录: `/Users/luxiaochuan/fuxingdaoOPC/已落盘`
-- 视频生成 skill: `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video`
-- 链接追踪 skill 参考: `/Users/luxiaochuan/fuxingdaoOPC/skills/xhs-publish-trace`
+- 待处理任务目录: `${PWD}/待完成`
+- 视频落盘根目录: `${PWD}/已落盘`
+- 视频生成 skill: `<installed-skill-root>/product-promo-video`（仅用于定位脚本，不作为输出目录）
+- 链接追踪 skill 参考: `<installed-skill-root>/xhs-publish-trace`
 
-Assume each task folder such as `/Users/luxiaochuan/fuxingdaoOPC/待完成/2` usually contains:
+Assume each task folder such as `${PWD}/待完成/2` usually contains:
 
 - 1 张 SKU 主图
 - `文案.md`
@@ -84,7 +84,7 @@ Do not reduce these decisions to fixed templates if the task has meaningful ambi
 The primary generation path is:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_campaign.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_campaign.py \
   --input-dir "/absolute/path/to/task-folder" \
   --platform "小红书" \
   --ratio "9:16" \
@@ -114,7 +114,7 @@ The default expectation is still a true 2-segment campaign:
 After generation, validate structure with:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/validate_campaign.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/validate_campaign.py \
   --report "/absolute/path/to/campaign-report.json"
 ```
 
@@ -171,7 +171,7 @@ Only construct a public URL when `feed_id` and `xsec_token` are both verified.
 When you have the real task outcome, write deterministic records with:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/write_daily_ledger.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/write_daily_ledger.py \
   --daily-dir "/absolute/path/to/已落盘/YYYY-MM-DD" \
   --record "/absolute/path/to/task/pipeline-record.json"
 ```
@@ -216,7 +216,7 @@ After each task is processed, archive it immediately instead of waiting for the 
 Use:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/archive_task.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/archive_task.py \
   --task-dir "/absolute/path/to/待完成/<task-id>" \
   --output-dir "/absolute/path/to/已落盘/YYYY-MM-DD/<task-id>"
 ```
@@ -238,7 +238,7 @@ This move should happen once the task has a settled result for that run, so the 
 If the user explicitly wants a fully automated bulk batch run, you may still use:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-video-xhs-ops/scripts/run_pipeline.py
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-video-xhs-ops/scripts/run_pipeline.py
 ```
 
 But this should not be the default operating mode for nuanced production work.

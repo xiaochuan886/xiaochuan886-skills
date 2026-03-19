@@ -33,12 +33,16 @@
 2. 使用 `xhs-publish-trace` 反查公开笔记链接与互动数据
 3. 使用 `product-video-xhs-ops` 完成校验、归档、台账写入
 
-## 其他技能
+## 完整技能目录
 
-- `wechat-cell-writer`
-- `wechat-safe-science-images`
-
-这两个技能与小红书工作流技能一样，统一维护在 `skills/` 目录下。
+- `expense-reimbursement-1.0.0`：从发票/行程单 PDF 提取信息并生成报销明细 Excel。
+- `opc-community-writer`：生成 OPC 社群的公众号与小红书内容。
+- `opc-markdown-to-html`：将 Markdown 转为 OPC/微信公众号风格 HTML。
+- `product-promo-video`：生成双分段商品宣传视频 campaign。
+- `product-video-xhs-ops`：执行小红书视频生产发布一体化运营流程。
+- `wechat-cell-writer`：生成细胞治疗主题公众号文章。
+- `wechat-safe-science-images`：生成合规科普风格配图素材。
+- `xhs-publish-trace`：反查并验证小红书公开链接与互动数据。
 
 ## 安装方式
 
@@ -61,6 +65,9 @@ npx skills add xiaochuan886/xiaochuan886-skills --skill product-video-xhs-ops
 ```text
 xiaochuan886-skills/
 ├── skills/
+│   ├── expense-reimbursement-1.0.0/
+│   ├── opc-community-writer/
+│   ├── opc-markdown-to-html/
 │   ├── product-promo-video/
 │   ├── xhs-publish-trace/
 │   ├── product-video-xhs-ops/

@@ -27,7 +27,7 @@ if str(SCRIPT_DIR) not in sys.path:
 from build_prompt import build_marketing_brief, build_storyboard, infer_category, liquid_physics_rules  # noqa: E402
 
 
-BAOYU_IMAGE_GEN = Path("/Users/luxiaochuan/.agents/skills/baoyu-image-gen/scripts/main.ts")
+BAOYU_IMAGE_GEN = Path.home() / ".agents" / "skills" / "baoyu-image-gen" / "scripts" / "main.ts"
 BAOYU_ENV = Path.home() / ".baoyu-skills" / "baoyu-image-gen" / ".env"
 CONCAT_SCRIPT = SCRIPT_DIR / "concat_segments.py"
 
@@ -47,14 +47,36 @@ def load_env_file(path: Path) -> dict:
 
 
 def load_skill_env():
+    extra_env = os.environ.get("PROMO_VIDEO_ENV_FILE", "").strip()
     candidates = [
         SCRIPT_DIR.parent / ".env",
-        Path("/Users/luxiaochuan/fuxingdaoOPC/coze-video-gen-skill/.env"),
         BAOYU_ENV,
     ]
+    if extra_env:
+        candidates.append(Path(extra_env).expanduser())
     for path in candidates:
         for key, value in load_env_file(path).items():
             os.environ.setdefault(key, value)
+
+
+def resolve_baoyu_image_gen() -> Path:
+    candidates = []
+    override = os.environ.get("BAOYU_IMAGE_GEN_SCRIPT", "").strip()
+    if override:
+        candidates.append(Path(override).expanduser())
+    candidates.extend(
+        [
+            BAOYU_IMAGE_GEN,
+            Path.home() / ".agents" / "skills" / "baoyu-image-gen" / "scripts" / "main.ts",
+        ]
+    )
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    raise SystemExit(
+        "未找到 baoyu-image-gen 脚本。请设置 BAOYU_IMAGE_GEN_SCRIPT，"
+        "或确认 ~/.agents/skills/baoyu-image-gen/scripts/main.ts 存在。"
+    )
 
 
 def image_to_data_url(image_path: str) -> str:
@@ -392,9 +414,10 @@ def ensure_required_keyframes(keyframe_dir: Path) -> None:
 
 
 def run_baoyu_batch(batch_file: Path):
+    baoyu_script = resolve_baoyu_image_gen()
     env = os.environ.copy()
     env.update(load_env_file(BAOYU_ENV))
-    cmd = ["npx", "-y", "bun", str(BAOYU_IMAGE_GEN), "--batchfile", str(batch_file), "--json"]
+    cmd = ["npx", "-y", "bun", str(baoyu_script), "--batchfile", str(batch_file), "--json"]
     result = run(cmd, env=env)
     if '"failed": 0' not in result.stdout and '"failed":0' not in result.stdout:
         raise RuntimeError(f"关键帧生成失败:\n{result.stdout}\n{result.stderr}")
@@ -410,11 +433,15 @@ def parse_args():
     parser.add_argument("--audience", default="", help="Target audience")
     parser.add_argument("--platform", default="小红书", help="Target platform")
     parser.add_argument("--tone", default="高级、自然、纯净、可信赖", help="Creative tone")
-    parser.add_argument("--ratio", default="16:9", choices=["16:9", "9:16"], help="Campaign ratio")
+    parser.add_argument("--ratio", default="9:16", choices=["16:9", "9:16"], help="Campaign ratio")
     parser.add_argument("--segment-duration", type=int, default=7, help="Duration per segment")
     parser.add_argument("--resolution", default="720p", choices=["480p", "720p", "1080p"])
     parser.add_argument("--model", default="doubao-seedance-1-5-pro-251215")
-    parser.add_argument("--out-dir", default="", help="Output directory; defaults to output/<category>-<ratio>/")
+    parser.add_argument(
+        "--out-dir",
+        default="",
+        help="Output directory; defaults to <cwd>/output/<category>-<ratio>/",
+    )
     return parser.parse_args()
 
 
@@ -445,7 +472,8 @@ def main():
         slug = f"{path_slug(args.input_dir)}-{base_slug}"
     else:
         slug = base_slug
-    default_out_dir = SCRIPT_DIR.parent / "output" / f"{slug}-{args.ratio.replace(':', 'x')}"
+    # Always default to current workspace so outputs don't land in globally installed skill dirs.
+    default_out_dir = Path.cwd() / "output" / f"{slug}-{args.ratio.replace(':', 'x')}"
     out_dir = Path(args.out_dir).expanduser().resolve() if args.out_dir else default_out_dir.resolve()
     keyframe_dir = out_dir / "keyframes"
     campaign_dir = out_dir / "campaign"

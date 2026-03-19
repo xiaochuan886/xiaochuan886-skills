@@ -2,13 +2,29 @@
 """Download and concatenate two generated promo video segments."""
 
 import argparse
+import os
 import shlex
+import shutil
 import subprocess
 import urllib.request
 from pathlib import Path
 
 
-FFMPEG = Path("/Users/luxiaochuan/Library/Application Support/bilibili/ffmpeg/ffmpeg")
+DEFAULT_FFMPEG = Path.home() / "Library" / "Application Support" / "bilibili" / "ffmpeg" / "ffmpeg"
+
+
+def resolve_ffmpeg() -> str:
+    override = os.environ.get("FFMPEG_BIN", "").strip()
+    if override:
+        return override
+    ffmpeg_from_path = shutil.which("ffmpeg")
+    if ffmpeg_from_path:
+        return ffmpeg_from_path
+    if DEFAULT_FFMPEG.exists():
+        return str(DEFAULT_FFMPEG)
+    raise SystemExit(
+        "未找到 ffmpeg。请安装 ffmpeg 到 PATH，或设置 FFMPEG_BIN 指向可执行文件。"
+    )
 
 
 def run(cmd):
@@ -20,12 +36,13 @@ def download(url: str, path: Path):
 
 
 def concat_videos(video_paths, output: Path):
+    ffmpeg_bin = resolve_ffmpeg()
     list_file = output.parent / "video_concat.txt"
     content = "\n".join(f"file {shlex.quote(str(p))}" for p in video_paths)
     list_file.write_text(content, encoding="utf-8")
 
     run([
-        str(FFMPEG), "-y",
+        ffmpeg_bin, "-y",
         "-f", "concat", "-safe", "0",
         "-i", str(list_file),
         "-c", "copy",
@@ -40,9 +57,6 @@ def main():
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--output-name", default="final-campaign.mp4")
     args = parser.parse_args()
-
-    if not FFMPEG.exists():
-        raise SystemExit(f"未找到 ffmpeg: {FFMPEG}")
 
     out_dir = Path(args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)

@@ -33,12 +33,16 @@ LLM-led end-to-end ops workflow for product video production, publishing, trace-
 2. Publish and reverse-trace the note with `xhs-publish-trace`
 3. Run operational closure (validation, archive, ledger) with `product-video-xhs-ops`
 
-## Other Skills
+## Full Skill Directory
 
-- `wechat-cell-writer`
-- `wechat-safe-science-images`
-
-These are maintained in the same `skills/` directory as the XHS workflow skills.
+- `expense-reimbursement-1.0.0`: Extract invoice/trip data from PDFs and generate reimbursement Excel sheets.
+- `opc-community-writer`: Create OPC community content for WeChat and Xiaohongshu.
+- `opc-markdown-to-html`: Convert markdown to styled HTML (OPC + WeChat templates).
+- `product-promo-video`: Generate 2-segment product promo campaign videos.
+- `product-video-xhs-ops`: Run end-to-end XHS video ops workflow.
+- `wechat-cell-writer`: Generate cell-therapy WeChat articles.
+- `wechat-safe-science-images`: Create compliant science-style image assets.
+- `xhs-publish-trace`: Recover and verify public XHS post links and metrics.
 
 ## Install
 
@@ -61,6 +65,9 @@ npx skills add xiaochuan886/xiaochuan886-skills --skill product-video-xhs-ops
 ```text
 xiaochuan886-skills/
 ├── skills/
+│   ├── expense-reimbursement-1.0.0/
+│   ├── opc-community-writer/
+│   ├── opc-markdown-to-html/
 │   ├── product-promo-video/
 │   ├── xhs-publish-trace/
 │   ├── product-video-xhs-ops/

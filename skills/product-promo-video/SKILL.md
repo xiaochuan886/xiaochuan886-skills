@@ -33,30 +33,30 @@ Do not silently downgrade a campaign request into a single clip.
 
 Use the scripts in this skill:
 
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/build_prompt.py`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_video.py`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_campaign.py`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/concat_segments.py`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/references/physical-realism.md`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/build_prompt.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_video.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_campaign.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/concat_segments.py`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/references/physical-realism.md`
 
 Environment file for this skill:
 
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/.env`
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/.env.example`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/.env`
+- `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/.env.example`
 
 Treat the script as a scaffold generator, not the final creative brain.
 The final prompt should be upgraded by the model after reasoning about product, audience, trend, and conversion intent.
 
 If the user supplies a local image path and visual details matter, inspect the image before writing the prompt.
-When motion realism matters, read `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/references/physical-realism.md`.
+When motion realism matters, read `/Users/re.stem/xiaochuan886-skills/skills/product-promo-video/references/physical-realism.md`.
 
 ## Setup
 
 Before first use:
 
 ```bash
-cp /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/.env.example \
-   /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/.env
+cp /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/.env.example \
+   /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/.env
 ```
 
 Then edit `.env` and fill in:
@@ -231,7 +231,7 @@ Treat the source image as the authority for whether packaging exists.
 Use the helper script when possible:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/build_prompt.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/build_prompt.py \
   --image "/absolute/path/to/product.jpg" \
   --description "产品描述" \
   --category "品类" \
@@ -280,7 +280,7 @@ For keyframes, explicitly state that no new text may appear and no packaging may
 For a local image:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_video.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_video.py \
   --image-base64 "/absolute/path/to/product.jpg" \
   --description "这里填产品描述" \
   --audience "这里填目标人群" \
@@ -291,7 +291,7 @@ python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/gener
 For a public image URL:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_video.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_video.py \
   --image-url "https://example.com/product.jpg" \
   --description "这里填产品描述" \
   --audience "这里填目标人群" \
@@ -302,7 +302,7 @@ python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/gener
 If you already have a polished prompt and want to bypass auto-briefing:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_video.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_video.py \
   --image-base64 "/absolute/path/to/product.jpg" \
   --prompt "这里填你已经写好的提示词" \
   --ratio 9:16
@@ -313,7 +313,7 @@ python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/gener
 When the user wants two clips stitched into one final video, generate both clips with the same ratio, then concatenate them:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/concat_segments.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/concat_segments.py \
   --video-url-1 "第一段视频链接" \
   --video-url-2 "第二段视频链接" \
   --out-dir "/absolute/output/dir"
@@ -339,9 +339,9 @@ It accepts either:
 - a local product image path
 - a public product image URL
 
-If `--out-dir` is omitted, it writes to a timestamp-free default folder under:
+If `--out-dir` is omitted, it writes to a timestamp-free default folder under the current working directory:
 
-- `/Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/output/`
+- `${PWD}/output/`
 
 Default naming rule:
 
@@ -351,7 +351,7 @@ Default naming rule:
 This keeps each task isolated and avoids overwriting previous runs from other folders.
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_campaign.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_campaign.py \
   --input-dir "/absolute/path/to/task-folder" \
   --audience "这里填目标人群" \
   --platform "小红书" \
@@ -362,7 +362,7 @@ python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/gener
 Or with a public image URL:
 
 ```bash
-python3 /Users/luxiaochuan/fuxingdaoOPC/skills/product-promo-video/scripts/generate_campaign.py \
+python3 /Users/re.stem/xiaochuan886-skills/skills/product-promo-video/scripts/generate_campaign.py \
   --image "https://example.com/product.jpg" \
   --description "这里填产品描述" \
   --platform "小红书" \

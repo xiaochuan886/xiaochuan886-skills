@@ -25,10 +25,12 @@ from build_prompt import build_marketing_brief, build_prompt, infer_category  # 
 
 def load_env_files():
     """Load .env from the skill directory first, then workspace fallbacks."""
+    extra_env = os.environ.get("PROMO_VIDEO_ENV_FILE", "").strip()
     candidates = [
         SCRIPT_DIR.parent / ".env",
-        Path("/Users/luxiaochuan/fuxingdaoOPC/coze-video-gen-skill/.env"),
     ]
+    if extra_env:
+        candidates.append(Path(extra_env).expanduser())
 
     for env_path in candidates:
         if not env_path.exists():
@@ -182,7 +184,7 @@ def main():
     api_key = os.environ.get("SKYLARK_API_KEY")
     if not api_key:
         print("错误: 未设置 SKYLARK_API_KEY 环境变量")
-        print("请在技能目录或 coze-video-gen-skill 目录下配置 .env")
+        print("请在技能目录下配置 .env，或通过 PROMO_VIDEO_ENV_FILE 指定 .env 路径")
         sys.exit(1)
 
     auto_prompt = args.prompt

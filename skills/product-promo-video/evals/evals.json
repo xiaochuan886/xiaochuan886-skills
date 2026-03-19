@@ -1,0 +1,23 @@
+{
+  "skill_name": "product-promo-video",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "用这张产品图（/tmp/sku-drink.jpg）和文案做一个 9:16 的小红书带货视频，要求两段式结构，不能凭空加包装文字，整体走高可信种草风格。",
+      "expected_output": "产出 2 段视频和 1 个拼接成片，保持包装/文本来源约束，报告中包含 storyboard、segment prompts 与 final_video 路径。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "任务目录在 /tmp/task-cream，里面有 SKU 图和 文案.md。请直接跑完整 campaign，输出 9:16，重点突出质地特写和转化收尾。",
+      "expected_output": "正确解析输入目录中的图片与文案，生成 4 张关键帧、2 段视频和 final campaign，并写出 campaign-report.json。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我只给你图片 URL 和一句描述，做一个 16:9 横屏产品宣传视频，保持物理真实，避免镜头过载。",
+      "expected_output": "在 URL 输入下仍能完成两段式流程，镜头语言与物理约束清晰，最终可输出拼接视频和结构化报告。",
+      "files": []
+    }
+  ]
+}
